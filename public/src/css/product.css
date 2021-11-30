@@ -1,0 +1,65 @@
+.header {
+    height: 60px;
+    background-color: yellow;
+    /* padding: 20px; */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+/* style dial page d'index */
+
+.box-new-product {
+    margin-top: 5rem;
+}
+
+.button-new-product {
+    background-color: rgba(0, 0, 255, 0.712);
+    color: white;
+    padding: 1rem;
+    text-decoration: none;
+}
+
+.button-edit-product {
+    background-color: rgba(75, 147, 206, 0.712);
+    color: black;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-right: 0.5rem;
+    text-decoration: none;
+}
+
+.button-remove-product {
+    background-color: rgba(216, 97, 53, 0.712);
+    color: black;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-right: 0.5rem;
+    text-decoration: none;
+    border: 2px solid rgb(216, 96, 53);
+}
+
+/* style dial page d create */
+
+.product-form {
+    background-color: rgba(47, 183, 224, 0.404);
+    /* padding: 50px; */
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    color: red;
+}
+
+.product-div {
+    margin-bottom: 30px;
+    color: black;
+}
+
+.button-cancel-product {
+    background-color: rgba(190, 60, 9, 0.726);
+    color: white;
+    padding: 1rem;
+    text-decoration: none;
+}
