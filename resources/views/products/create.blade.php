@@ -17,29 +17,31 @@
 
     <h1>Create product</h1>
 
-    <form class="product-form" action="{{route('create-dial-products')}}" method="GET">
+    <form class="product-form" action="{{route('create-dial-products')}}" method="POST">
+
+        @csrf
 
         <h2>in this form we're creating</h2>
         <div class="product-div">
             <label for="">ID : </label>
-            <input type="text" name="" id="">
+            <input type="text" name="product_id" id="">
         </div>
 
         <div class="product-div">
             <label for="">name : </label>
-            <input type="text" name="" id="">
+            <input type="text" name="name" id="">
         </div>
 
 
         <div class="product-div">
             <label for="">price : </label>
-            <input type="number" name="" id="">
+            <input type="number" name="price" id="">
         </div>
 
         <div class="product-div">
 
             <label for="">description : </label>
-            <textarea name="" id="" cols="60" rows="10"></textarea>
+            <textarea name="description" id="" cols="60" rows="10"></textarea>
         </div>
 
         <input class="button-new-product" type="submit" value="Ajouter">

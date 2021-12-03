@@ -11,32 +11,27 @@
 </head>
 <body>
 
- 
-
-    @include('layouts.menu')
-
+     @include('layouts.menu')
 
     <h1>
         List product
     </h1>
 
-
-    <table border="10px" >
+    <table border="10px">
         <tr>
             <td>ID :</td>
             <td>name :</td>
-            <td>phone :</td>
             <td>price :</td>
             <td>description :</td>
             <td>Actions :</td>
         </tr>
 
+        @foreach ($products as $pr)
         <tr>
-            <td>REF-1</td>
-            <td>Tomatos</td>
-            <td>39876543</td>
-            <td>30 $</td>
-            <td>this is an product from morocco to EUS</td>
+            <td>{{$pr->id}}</td>
+            <td>{{$pr->name}}</td>
+            <td>{{$pr->price}}</td>
+            <td>{{$pr->description}}</td>
             <td>
                 <a  class="button-edit-product" href="{{route('edit-dial-products')}}">
                     edit
@@ -47,43 +42,7 @@
                 </button>
             </td>
         </tr>
-
-
-        <tr>
-            <td>REF-2</td>
-            <td>Tomatos</td>
-            <td>39876543</td>
-            <td>30 $</td>
-            <td>this is an product from morocco to EUS</td>
-            <td>
-                <a  class="button-edit-product" href="{{route('edit-dial-products')}}">
-                    edit
-                </a>
-
-                <button class="button-remove-product" href="{{route('edit-dial-products')}}">
-                    remove
-                </button>
-            </td>
-        </tr>
-
-
-        <tr>
-            <td>REF-3</td>
-            <td>Tomatos</td>
-            <td>39876543</td>
-            <td>30 $</td>
-            <td>this is an product from morocco to EUS</td>
-            <td>
-                <a  class="button-edit-product" href="{{route('edit-dial-products')}}">
-                    edit
-                </a>
-
-                <button class="button-remove-product" href="{{route('edit-dial-products')}}">
-                    remove
-                </button>
-            </td>
-        </tr>
-
+        @endforeach
 
     </table>
 
