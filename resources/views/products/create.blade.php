@@ -20,17 +20,13 @@
     <form class="product-form" action="{{route('create-dial-products')}}" method="POST">
 
         @csrf
-
-        <h2>in this form we're creating</h2>
-        <div class="product-div">
-            <label for="">ID : </label>
-            <input type="text" name="product_id" id="">
-        </div>
-
         <div class="product-div">
             <label for="">name : </label>
             <input type="text" name="name" id="">
         </div>
+
+        <h2>in this form we're creating</h2>
+
 
 
         <div class="product-div">
