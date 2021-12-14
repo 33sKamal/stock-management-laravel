@@ -26,6 +26,7 @@
             <td>price :</td>
             <td>description :</td>
             <td>date de creation :</td>
+            <td>date de modification :</td>
             <td>Actions :</td>
         </tr>
 
@@ -35,7 +36,8 @@
                 <td>{{ $pr->name }}</td>
                 <td>{{ $pr->price }}</td>
                 <td>{{ $pr->description }}</td>
-                <td>{{ $pr->created_at }}</td>
+                <td>{{ $pr->created_at->format('Y-m-d H:s') }}</td>
+                <td>{{ $pr->updated_at }}</td>
                 <td>
                     <a class="button-edit-product" href="/products/edit/{{$pr->id}}">
                         edit

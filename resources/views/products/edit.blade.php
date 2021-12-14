@@ -18,15 +18,20 @@
 
 
     <h1>edit product</h1>
-
    
-    <form class="product-form" action="" method="POST">
+    <form class="product-form" action="{{route('update-dial-products-ok')}}" method="POST">
 
         @csrf
+        <div class="product-div">
+            <label for="">ID : </label>
+            <input type="text" value="{{$productLiModif->id}}" name="productId" readonly>
+        </div>
+
         <div class="product-div">
             <label for="">name : </label>
             <input type="text" value="{{$productLiModif->name}}" name="name" id="">
         </div>
+
 
         <h2>in this form we're creating</h2>
 
@@ -43,7 +48,7 @@
             <textarea name="description" id="" cols="60" rows="10">{{$productLiModif->description}}</textarea>
         </div>
 
-        <input class="button-new-product" type="submit" value="Ajouter">
+        <input class="button-new-product" type="submit" value="Update">
 
         <a class="button-cancel-product" href="{{route('index-dial-products')}}">
             Annuler
