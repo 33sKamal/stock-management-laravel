@@ -23,8 +23,6 @@
         <a href="{{route('create-dial-products')}}" class="button-new-product">new product</a>
     </div>
 
-
-
     <table border="10px">
         <tr>
             <td>ID :</td>

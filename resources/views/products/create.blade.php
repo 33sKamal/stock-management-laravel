@@ -17,7 +17,16 @@
 
     <h1>Create product</h1>
 
-    <form class="product-form" action="{{route('create-dial-products')}}" method="POST">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                @endforeach
+        </div>
+    @endif
+
+
+    <form class="product-form" action="{{ route('create-dial-products') }}" method="POST">
 
         @csrf
         <div class="product-div">
@@ -42,7 +51,7 @@
 
         <input class="button-new-product" type="submit" value="Ajouter">
 
-        <a class="button-cancel-product" href="{{route('index-dial-products')}}">
+        <a class="button-cancel-product" href="{{ route('index-dial-products') }}">
             Annuler
         </a>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -31,6 +32,22 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+
+        // hna kanvalidiw data <dialn></dialn>
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'price' => 'required',
+            'description' => 'required',
+
+        ]);
+
+        // fi halat manjhatch validation
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         // ANjobo data 
         $data = $request->all();
 
