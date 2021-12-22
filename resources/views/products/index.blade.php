@@ -19,6 +19,12 @@
         List product
     </h1>
 
+    <div class="box-new-product" style="margin-bottom:3rem" >
+        <a href="{{route('create-dial-products')}}" class="button-new-product">new product</a>
+    </div>
+
+
+
     <table border="10px">
         <tr>
             <td>ID :</td>
@@ -57,7 +63,6 @@
         @endforeach
 
     </table>
-
 
 
 </body>
