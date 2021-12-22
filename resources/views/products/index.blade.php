@@ -43,9 +43,15 @@
                         edit
                     </a>
 
-                    <button class="button-remove-product" href="">
-                        remove
-                    </button>
+                    <form action="{{route('delete-dial-products' , ['product_id' => $pr->id])}}" method="POST" >
+                        @csrf
+                        <button class="button-remove-product" >
+                            remove
+                        </button>
+                    </form>
+
+
+                    
                 </td>
             </tr>
         @endforeach

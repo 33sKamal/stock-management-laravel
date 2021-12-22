@@ -48,4 +48,42 @@ class ProductController extends Controller
 
         return view('products.index')->with('products', $products);
     }
+
+
+    public function edit($product_id)
+    {
+        $productLiModif = \App\Models\Product::where('id', '=', $product_id)->first();
+        return view('products.edit')->with('productLiModif', $productLiModif);
+    }
+
+    public function update(Request $request)
+    {
+        // kanhet data hnaya lijatni men HTML
+        $data = $request->all();
+
+        $product_id = $data['productId'];
+
+        \App\Models\Product::where('id', '=', $product_id)->update([
+            'name' => $data['name'],
+            'price' => $data['price'],
+            'description' => $data['description'],
+        ]);
+
+        // anreje3o la page dial index
+        $products = \App\Models\Product::get();
+
+        return view('products.index')->with('products', $products);
+    }
+
+
+    public function delete($product_id)
+    {
+
+        \App\Models\Product::destroy($product_id);
+
+        // anreje3o la page dial index
+        $products = \App\Models\Product::get();
+
+        return view('products.index')->with('products', $products);
+    }
 }

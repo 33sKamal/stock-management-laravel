@@ -12,37 +12,14 @@ Route::get('products/create',[ProductController::class , 'create'])->name('creat
 
 Route::post('products/create',[ProductController::class , 'store'])->name('create-dial-products');
 
-
 // Hna edit dial products
-Route::get('products/edit/{product_id}', function ($product_id) {
-
-    $productLiModif = \App\Models\Product::where('id', '=', $product_id)->first();
-
-
-    return view('products.edit')->with('productLiModif', $productLiModif);
-})->name('edit-dial-products');
-
-
+Route::get('products/edit/{product_id}',[ProductController::class , 'edit'])->name('edit-dial-products');
 
 // Hna anmodifier wahed products
-Route::post('products/updateok', function (Request $request) {
+Route::post('products/updateok', [ProductController::class , 'update'])->name('update-dial-products-ok');
 
-    // kanhet data hnaya lijatni men HTML
-    $data = $request->all();
-
-    $product_id = $data['productId'];
-
-    \App\Models\Product::where('id' , '=' , $product_id)->update([
-        'name' => $data['name'],
-        'price' => $data['price'],
-        'description' => $data['description'],
-    ]);
-
-    // anreje3o la page dial index
-    $products = \App\Models\Product::get();
-
-    return view('products.index')->with('products', $products);
-})->name('update-dial-products-ok');
+// Hna anmodifier wahed products
+Route::post('products/delete/{product_id}', [ProductController::class , 'delete'])->name('delete-dial-products');
 
 
 # HADO ROUTES DIAL STOCKS
