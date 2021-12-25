@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
-Route::redirect('/', 'products/index');
+// Route::redirect('/', 'products/index');
 
 Route::get('products/index',[ProductController::class , 'index'])->name('index-dial-products');
 

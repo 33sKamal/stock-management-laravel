@@ -33,19 +33,18 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
-        // hna kanvalidiw data <dialn></dialn>
+        // hna kanvalidiw data <dialna
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'price' => 'required',
-            'description' => 'required',
-
+            
+            'description' => 'required|max:100|min:10',
         ]);
 
         // fi halat manjhatch validation
-        if ($validator->fails()) {
+        if (  $validator->fails()  ) {
             return back()
-                ->withErrors($validator)
-                ->withInput();
+                ->withErrors($validator);
         }
 
         // ANjobo data 
@@ -61,7 +60,6 @@ class ProductController extends Controller
 
         // anreje3o la page dial index
         $products = \App\Models\Product::get();
-
 
         return view('products.index')->with('products', $products);
     }

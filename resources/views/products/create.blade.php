@@ -17,36 +17,50 @@
 
     <h1>Create product</h1>
 
-    @if ($errors->any())
+    {{-- @if ($errors->any())
         <div class="alert alert-danger">
                 @foreach ($errors->all() as $error)
                     <p>{{ $error }}</p>
                 @endforeach
         </div>
-    @endif
+    @endif --}}
 
 
     <form class="product-form" action="{{ route('create-dial-products') }}" method="POST">
 
         @csrf
+        <h2>in this form we're creating</h2>
+
+
         <div class="product-div">
             <label for="">name : </label>
             <input type="text" name="name" id="">
+            <br>
+            @if ($errors->has('name'))
+            <span style="color:red">{{  $errors->first('name')  }}</span>
+            @endif
+
         </div>
-
-        <h2>in this form we're creating</h2>
-
 
 
         <div class="product-div">
             <label for="">price : </label>
             <input type="number" name="price" id="">
+
+            @if ($errors->has('price'))
+            <span style="color:red"> {{$errors->first('price')}}  </span>
+            @endif
+
         </div>
 
         <div class="product-div">
 
             <label for="">description : </label>
             <textarea name="description" id="" cols="60" rows="10"></textarea>
+
+            @if ($errors->has('description'))
+            <span style="color:red">{{$errors->first('description')}}</span>
+            @endif
         </div>
 
         <input class="button-new-product" type="submit" value="Ajouter">
