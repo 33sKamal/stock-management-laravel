@@ -23,18 +23,13 @@ Route::post('products/delete/{product_id}', [ProductController::class , 'delete'
 
 
 // Hadi blasat dial stocks
-Route::get('stocks/create' ,[StockController::class , 'create'] )->name('create-dial-stocks');;
-Route::post('stocks/store' ,[StockController::class , 'store'] )->name('store-dial-stocks');;
+Route::get('stocks/create' ,[StockController::class , 'create'] )->name('create-dial-stocks');
+Route::get('stocks/{stock_id}/edit' ,[StockController::class , 'edit'] )->name('edit-dial-stocks');
+Route::post('stocks/{stock_id}/update' ,[StockController::class , 'update'] )->name('update-dial-stocks');
+Route::post('stocks/store' ,[StockController::class , 'store'] )->name('store-dial-stocks');
+Route::get('stocks/index' ,[StockController::class , 'index'] )->name('index-dial-stocks');
 
 # HADO ROUTES DIAL STOCKS
 // Route::get('stocks/create', function () {
 //     return view('stocks.create');
 // })->name('create-dial-stocks');
-
-Route::get('stocks/edit', function () {
-    return view('stocks.edit');
-})->name('edit-dial-stocks');
-
-Route::get('stocks/index', function () {
-    return view('stocks.index');
-})->name('index-dial-stocks');

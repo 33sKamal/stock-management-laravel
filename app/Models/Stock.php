@@ -17,8 +17,8 @@ class Stock extends Model
     ];
 
 
-    // public function product()
-    // {
-    //     return $this->belongsTo(\App\Models\Product::class, 'product_id', 'id', 'products');
-    // }
+    public function product()
+    {
+        return $this->belongsTo(\App\Models\Product::class, 'product_id', 'id', 'products');
+    }
 }

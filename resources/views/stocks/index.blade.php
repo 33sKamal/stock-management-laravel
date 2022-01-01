@@ -39,11 +39,11 @@
             <td>{{$stock->case}}</td>
             <td>{{$stock->qty}}</td>
             <td>
-                <a class="button-edit-product" href="{{route('edit-dial-stocks')}}">
+                <a class="button-edit-product" href="{{route('edit-dial-stocks' , ['stock_id' => $stock->id])}}">
                     edit
                 </a>
 
-                <button class="button-remove-product" href="{{route('edit-dial-stocks')}}">
+                <button class="button-remove-product" href="#">
                     remove
                 </button>
             </td>

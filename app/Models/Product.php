@@ -20,4 +20,10 @@ class Product extends Model
     ];
 
     use HasFactory;
+
+    public function stocks()
+    {
+        return $this->hasMany(\App\Models\Stock::class);
+
+    }
 }

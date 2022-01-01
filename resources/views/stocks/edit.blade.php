@@ -14,48 +14,58 @@
 
 <body>
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            @foreach ($errors->all() as $error)
+                <p>{{ $error }}</p>
+            @endforeach
+        </div>
+    @endif
+
     @include('layouts.menu')
 
 
     <h1>Edit stock</h1>
 
-    <form class="product-form" action="{{route('create-dial-stocks')}}" method="GET">
+    <form class="product-form" action="{{ route('update-dial-stocks',['stock_id' => $stock->id]) }}" method="POST">
+        @csrf
 
-        <div class="product-div" >
-            <label for="">ID : </label>
-            <input type="text" name="" id="">
-        </div>
 
-        <div class="product-div" >
+        <div class="product-div">
             <label for="">product : </label>
-            <select name="" id="">
+            <select name="product_id" id="">
                 <option value="">Selectioner un produit</option>
-                <option value="maticha">Maticha</option>
-                <option value="btata">Btata</option>
-                <option value="ger3a">Ger3a</option>
+                @foreach ($products as $product)
+
+                    @if ($product->id == $stock->product_id)
+                        <option selected value="{{ $product->id }}">{{ $product->name }}</option>
+                    @else
+                        <option value="{{ $product->id }}">{{ $product->name }}</option>
+                    @endif
+
+                @endforeach
             </select>
 
         </div>
-
-        <div class="product-div" >
+        <div class="product-div">
             <label for="">secteur : </label>
-            <input type="text" name="" id="">
+            <input type="text" name="secteur" value="{{ $stock->secteur }}" id="">
         </div>
 
-        <div class="product-div" >
+        <div class="product-div">
             <label for="">case : </label>
-            <input type="text" name="" id="">
+            <input type="text" name="case" value="{{ $stock->case }}" id="">
         </div>
 
 
-        <div class="product-div" >
+        <div class="product-div">
             <label for="">Quantity : </label>
-            <input type="number" name="" id="">
+            <input type="number" name="qty" value="{{ $stock->qty }}" id="">
         </div>
 
         <input class="button-new-product" type="submit" value="Modifier">
 
-        <a  class="button-cancel-product" href="{{route('index-dial-stocks')}}">
+        <a class="button-cancel-product" href="{{ route('index-dial-stocks') }}">
             Annuler
         </a>
 
