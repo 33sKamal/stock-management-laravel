@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
 
-// Route::redirect('/', 'products/index');
+Route::redirect('/', 'products/index');
 
 Route::get('products/index',[ProductController::class , 'index'])->name('index-dial-products');
 
@@ -21,10 +22,14 @@ Route::post('products/updateok', [ProductController::class , 'update'])->name('u
 Route::post('products/delete/{product_id}', [ProductController::class , 'delete'])->name('delete-dial-products');
 
 
+// Hadi blasat dial stocks
+Route::get('stocks/create' ,[StockController::class , 'create'] )->name('create-dial-stocks');;
+Route::post('stocks/store' ,[StockController::class , 'store'] )->name('store-dial-stocks');;
+
 # HADO ROUTES DIAL STOCKS
-Route::get('stocks/create', function () {
-    return view('stocks.create');
-})->name('create-dial-stocks');
+// Route::get('stocks/create', function () {
+//     return view('stocks.create');
+// })->name('create-dial-stocks');
 
 Route::get('stocks/edit', function () {
     return view('stocks.edit');

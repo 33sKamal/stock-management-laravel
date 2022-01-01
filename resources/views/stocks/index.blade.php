@@ -30,12 +30,14 @@
             <td>quanity :</td>
         </tr>
 
+        @foreach ($stocks as $stock)
+            
         <tr>
-            <td>STOCK-1</td>
-            <td>Tomatos</td>
-            <td>SEC-01</td>
-            <td>CASE-01</td>
-            <td>100</td>
+            <td>{{$stock->id}}</td>
+            <td>{{$stock->product->name}}</td>
+            <td>{{$stock->secteur}}</td>
+            <td>{{$stock->case}}</td>
+            <td>{{$stock->qty}}</td>
             <td>
                 <a class="button-edit-product" href="{{route('edit-dial-stocks')}}">
                     edit
@@ -46,25 +48,9 @@
                 </button>
             </td>
         </tr>
+        @endforeach
 
 
-
-        <tr>
-            <td>STOCK-2</td>
-            <td>Batata</td>
-            <td>SEC-02</td>
-            <td>CASE-05</td>
-            <td>600</td>
-            <td>
-                <a class="button-edit-product" href="{{route('edit-dial-stocks')}}">
-                    edit
-                </a>
-
-                <button class="button-remove-product" href="{{route('edit-dial-stocks')}}">
-                    remove
-                </button>
-            </td>
-        </tr>
 
 
     </table>

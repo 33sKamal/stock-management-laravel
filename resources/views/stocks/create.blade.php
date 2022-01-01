@@ -16,56 +16,47 @@
 
     @include('layouts.menu')
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                @endforeach
+        </div>
+    @endif
+    
     <h1>Create stock</h1>
 
-    <form class="product-form" action="{{route('create-dial-stocks')}}" method="GET">
+    <form class="product-form" action="{{route('store-dial-stocks')}}" method="POST">
 
-        <div class="product-div" >
-            <label for="">ID : </label>
-            <input type="text" name="" id="">
-        </div>
+        @csrf
 
         <div class="product-div" >
             <label for="">product : </label>
-            <select name="" id="">
+            <select name="product_id" id="">
                 <option value="">Selectioner un produit</option>
-                <option value="maticha">Maticha</option>
-                <option value="btata">Btata</option>
-                <option value="ger3a">Ger3a</option>
+                @foreach ($products as $product)
+                <option value="{{$product->id}}">{{$product->name}}</option>
+                @endforeach
             </select>
 
         </div>
 
         <div class="product-div" >
             <label for="">secteur : </label>
-            <input type="text" name="" id="">
+            <input type="text" name="secteur" id="">
         </div>
 
         <div class="product-div" >
             <label for="">case : </label>
-            <input type="text" name="" id="">
+            <input type="text" name="case" id="">
         </div>
 
 
         <div class="product-div" >
             <label for="">Quantity : </label>
-            <input type="number" id="qty" value="20" >
+            <input type="text" id="qty" name="qty" >
         </div>
 
-        <hr>
-
-        <div class="product-div" >
-            <label for="">price of product : </label>
-            <input type="number" id="price-product" value="100" >
-        </div>
-
-
-        <div class="product-div" >
-            <label for="">lmajmo3 : </label>
-            <input type="number" id="price-qty-product" value="" >
-        </div>
-
-        <hr>
 
         <input class="button-new-product" type="submit" value="Ajouter">
 
