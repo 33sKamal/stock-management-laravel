@@ -28,6 +28,7 @@ Route::get('stocks/{stock_id}/edit' ,[StockController::class , 'edit'] )->name('
 Route::post('stocks/{stock_id}/update' ,[StockController::class , 'update'] )->name('update-dial-stocks');
 Route::post('stocks/store' ,[StockController::class , 'store'] )->name('store-dial-stocks');
 Route::get('stocks/index' ,[StockController::class , 'index'] )->name('index-dial-stocks');
+Route::post('stocks/delete/{stock_id}', [StockController::class , 'delete'])->name('delete-dial-stocks');
 
 # HADO ROUTES DIAL STOCKS
 // Route::get('stocks/create', function () {

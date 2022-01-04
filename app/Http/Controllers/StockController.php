@@ -111,4 +111,15 @@ class StockController extends Controller
 
         return view('stocks.index')->with('stocks', $stocks);
     }
+
+    public function delete($stock_id)
+    {
+
+        \App\Models\Stock::destroy($stock_id);
+
+        // anreje3o la page dial index
+        $stocks = \App\Models\Stock::get();
+
+        return view('stocks.index')->with('stocks', $stocks);
+    }
 }
