@@ -19,15 +19,15 @@
 
     <h1>edit order</h1>
    
-    <form class="order-form" action="{{route('update-dial-orders-ok')}}" method="POST">
+    <form class="product-form" action="{{route('update-dial-orders-ok')}}" method="POST">
 
         @csrf
-        <div class="order-div">
+        <div class="product-div">
             <label for="">ID : </label>
             <input type="text" value="{{$orderLiModif->id}}" name="orderId" readonly>
         </div>
 
-        <div class="order-div">
+        <div class="product-div">
             <label for="">name : </label>
             <input type="text" value="{{$orderLiModif->name}}" name="name" id="">
         </div>
@@ -37,12 +37,12 @@
 
 
 
-        <div class="order-div">
+        <div class="product-div">
             <label for="">price : </label>
             <input type="number" value="{{$orderLiModif->price}}" name="price" id="">
         </div>
 
-        <div class="order-div">
+        <div class="product-div">
 
             <label for="">description : </label>
             <textarea name="description" id="" cols="60" rows="10">{{$orderLiModif->description}}</textarea>

@@ -33,30 +33,35 @@
             <td>status :</td>
             <td>total :</td>
             <td>sub_total :</td>
+            <td>products :</td>
             <td>date de creation :</td>
-            <td>date de modification :</td>
             <td>Actions :</td>
         </tr>
 
-        @foreach ($orders as $pr)
+        @foreach ($orders as $or)
             <tr>
-                <td>{{ $pr->id }}</td>
-                <td>{{ $pr->name }}</td>
-                <td>{{ $pr->phone }}</td>
-                <td>{{ $pr->address }}</td>
-                <td>{{ $pr->method_payment }}</td>
-                <td>{{ $pr->status }}</td>
-                <td>{{ $pr->total }}</td>
-                <td>{{ $pr->sub_total }}</td>
-
-                <td>{{ $pr->created_at->format('Y-m-d H:s') }}</td>
-                <td>{{ $pr->updated_at }}</td>
+                <td>{{ $or->id }}</td>
+                <td>{{ $or->name }}</td>
+                <td>{{ $or->phone }}</td>
+                <td>{{ $or->address }}</td>
+                <td>{{ $or->method_payment }}</td>
+                <td>{{ $or->status }}</td>
+                <td>{{ $or->total }}</td>
+                <td>{{ $or->sub_total }}</td>
                 <td>
-                    <a class="button-edit-order" href="/orders/edit/{{ $pr->id }}">
+                    @foreach ($or->products as $pr)
+                    {{$pr->name}} , 
+                        
+                    @endforeach
+                </td>
+
+                <td>{{ $or->created_at->format('Y-m-d H:s') }}</td>
+                <td>
+                    <a class="button-edit-order" href="/orders/edit/{{ $or->id }}">
                         edit
                     </a>
 
-                    <form action="{{ route('delete-dial-orders', ['order_id' => $pr->id]) }}" method="POST">
+                    <form action="{{ route('delete-dial-orders', ['order_id' => $or->id]) }}" method="POST">
                         @csrf
                         <button class="button-remove-order">
                             remove

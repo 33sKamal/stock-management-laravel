@@ -24,6 +24,13 @@ class Product extends Model
     public function stocks()
     {
         return $this->hasMany(\App\Models\Stock::class);
-
     }
+
+
+
+    public function orders()
+    {
+        return $this->belongsToMany(\App\Models\Order::class,'order_products','product_id','order_id');
+    }
+
 }

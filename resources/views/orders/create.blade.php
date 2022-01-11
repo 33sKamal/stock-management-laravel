@@ -26,13 +26,13 @@
     @endif --}}
 
 
-    <form class="order-form" action="{{ route('store-dial-orders') }}" method="POST">
+    <form class="product-form" action="{{ route('store-dial-orders') }}" method="POST">
 
         @csrf
         <h2>in this form we're creating</h2>
 
 
-        <div class="order-div">
+        <div class="product-div">
             <label for="">name : </label>
             <input type="text" name="name" id="">
             <br>
@@ -43,7 +43,7 @@
         </div>
 
 
-        <div class="order-div">
+        <div class="product-div">
             <label for="">phone : </label>
             <input type="number" name="phone" id="">
 
@@ -55,7 +55,7 @@
 
 
 
-        <div class="order-div">
+        <div class="product-div">
 
             <label for="">address : </label>
             <textarea name="address" id="" cols="60" rows="3"></textarea>
@@ -68,7 +68,7 @@
 
 
 
-        <div class="order-div">
+        <div class="product-div">
             <label for="">method payment : </label>
 
             <select name="method_payment" id="">
@@ -86,7 +86,7 @@
 
 
 
-        <div class="order-div">
+        <div class="product-div">
             <label for="">Status : </label>
 
             <select name="status" id="">
@@ -102,6 +102,27 @@
             @endif
 
         </div>
+
+
+
+
+        <div class="product-div">
+            <label for="">Product : </label>
+
+            <select name="product_id" id="">
+                <option value="">khoudlik chi piaca</option>
+
+                @foreach ($products as $product)
+                <option value="{{$product->id}}">{{$product->name}}  ({{$product->price}})</option>
+                @endforeach
+            </select>
+
+            @if ($errors->has('product_id'))
+            <span style="color:red"> {{$errors->first('product_id')}}  </span>
+            @endif
+
+        </div>
+
 
 
         <input class="button-new-order" type="submit" value="Ajouter">

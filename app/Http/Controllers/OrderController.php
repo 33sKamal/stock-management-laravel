@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -26,7 +27,8 @@ class OrderController extends Controller
 
     public function create()
     {
-        return view('orders.create');
+        $products = Product::all();
+        return view('orders.create')->with('products', $products);
     }
 
 
@@ -40,8 +42,6 @@ class OrderController extends Controller
             'phone' => 'required',
             'method_payment' => 'required|in:card,cod',
             'status' => 'required|in:new,shipped,delivered,canceled',
-            // 'total' => 'required',
-            // 'sub_total' => 'required',
 
         ]);
 
@@ -59,7 +59,7 @@ class OrderController extends Controller
 
         // anhatoha f pwlabase de donne
 
-        \App\Models\Order::create([
+        $order = \App\Models\Order::create([
             'name' => $data['name'],
             'address' => $data['address'],
             'phone' => $data['phone'],
@@ -67,6 +67,13 @@ class OrderController extends Controller
             'status' => $data['status'],
             'total' => $data['total'],
             'sub_total' => $data['sub_total'],
+        ]);
+
+        $product_id = $data['product_id'];
+
+        $order->products()->attach($product_id, [
+            'qty' => 1,
+            'price' => 30,
         ]);
 
         return redirect()->route('index-dial-orders');
@@ -103,6 +110,5 @@ class OrderController extends Controller
         \App\Models\Order::destroy($order_id);
 
         return redirect()->route('index-dial-orders');
-
     }
 }
