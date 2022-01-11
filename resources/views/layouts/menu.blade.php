@@ -11,4 +11,9 @@
             PRODUCTS
         </a>
       
+
+        <a href="{{ route('index-dial-orders') }}">
+            Orders
+        </a>
+      
     </header>
