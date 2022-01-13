@@ -25,14 +25,10 @@
 
     <table border="10px">
         <tr>
-            <td>ID :</td>
-            <td>name :</td>
+            <td>ID / name :</td>
             <td>phone :</td>
-            <td>address :</td>
             <td>method_payment :</td>
-            <td>status :</td>
             <td>total :</td>
-            <td>sub_total :</td>
             <td>products :</td>
             <td>date de creation :</td>
             <td>Actions :</td>
@@ -40,19 +36,21 @@
 
         @foreach ($orders as $or)
             <tr>
-                <td>{{ $or->id }}</td>
-                <td>{{ $or->name }}</td>
-                <td>{{ $or->phone }}</td>
-                <td>{{ $or->address }}</td>
+            
+                <td>{{ $or->id }} / {{ $or->name }}</td>
+                <td>{{ $or->phone }} </td>
                 <td>{{ $or->method_payment }}</td>
-                <td>{{ $or->status }}</td>
                 <td>{{ $or->total }}</td>
-                <td>{{ $or->sub_total }}</td>
                 <td>
-                    @foreach ($or->products as $pr)
-                    {{$pr->name}} , 
-                        
-                    @endforeach
+                    <ul>
+                        @foreach ($or->products as $pr)
+                        <li>
+                            <p>
+                                {{$pr->name}} , {{$pr->pivot->price}}$ * {{$pr->pivot->qty}}
+                            </p>
+                        </li>
+                        @endforeach
+                    </ul>
                 </td>
 
                 <td>{{ $or->created_at->format('Y-m-d H:s') }}</td>

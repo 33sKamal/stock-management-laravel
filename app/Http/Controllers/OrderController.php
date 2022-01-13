@@ -13,15 +13,7 @@ class OrderController extends Controller
 
     public function index()
     {
-
-        // $orders = \App\Models\Order::get(); // jiblia Kolchi
-        // $orders = \App\Models\Order::take(3)->get(); // khoudliangher 3
-        // $orders = \App\Models\Order::skip(3)->take(4)->get(); // foutlia 3 okhoud 4
-        // $orders = \App\Models\Order::get()->skip(0); // foutlia 3 ikhoud kolchi
-        // $orders = \App\Models\Order::whereDate('created_at' , '=' , now())->get(); // jiblia li tarikh dialhom ...
-
         $orders = \App\Models\Order::get();
-
         return view('orders.index')->with('orders', $orders);
     }
 
@@ -42,7 +34,8 @@ class OrderController extends Controller
             'phone' => 'required',
             'method_payment' => 'required|in:card,cod',
             'status' => 'required|in:new,shipped,delivered,canceled',
-
+            'products_id' => 'required|array',
+            'products_id.*' => 'required|exists:products,id',
         ]);
 
         // fi halat manjhatch validation
@@ -51,11 +44,22 @@ class OrderController extends Controller
                 ->withErrors($validator);
         }
 
+
         // ANjobo data 
         $data = $request->all();
 
-        $data['sub_total'] = 900;
-        $data['total'] = 1000;
+        $totals = 0;
+        $products_id = $data['products_id'];
+
+        foreach ($products_id as $prodId) {
+
+            $product  = Product::find($prodId);
+            $totals = $totals + $product->price;
+        }
+
+
+        $data['sub_total'] = $totals;
+        $data['total'] = $totals;
 
         // anhatoha f pwlabase de donne
 
@@ -69,12 +73,19 @@ class OrderController extends Controller
             'sub_total' => $data['sub_total'],
         ]);
 
-        $product_id = $data['product_id'];
+        foreach ($products_id as $prodId) {
+            
 
-        $order->products()->attach($product_id, [
-            'qty' => 1,
-            'price' => 30,
-        ]);
+            $product  = Product::find($prodId);
+            $totals = $totals + $product->price;
+
+            $order->products()->attach($prodId, [
+                'qty' => 1,
+                'price' => $product->price,
+            ]);
+
+        }
+
 
         return redirect()->route('index-dial-orders');
     }

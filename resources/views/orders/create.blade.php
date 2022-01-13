@@ -17,13 +17,13 @@
 
     <h1>Create order</h1>
 
-    {{-- @if ($errors->any())
+    @if ($errors->any())
         <div class="alert alert-danger">
                 @foreach ($errors->all() as $error)
                     <p>{{ $error }}</p>
                 @endforeach
         </div>
-    @endif --}}
+    @endif
 
 
     <form class="product-form" action="{{ route('store-dial-orders') }}" method="POST">
@@ -103,13 +103,10 @@
 
         </div>
 
-
-
-
         <div class="product-div">
             <label for="">Product : </label>
 
-            <select name="product_id" id="">
+            <select name="products_id[]" id="" multiple >
                 <option value="">khoudlik chi piaca</option>
 
                 @foreach ($products as $product)
@@ -117,8 +114,8 @@
                 @endforeach
             </select>
 
-            @if ($errors->has('product_id'))
-            <span style="color:red"> {{$errors->first('product_id')}}  </span>
+            @if ($errors->has('products_id'))
+            <span style="color:red"> {{$errors->first('products_id')}}  </span>
             @endif
 
         </div>
